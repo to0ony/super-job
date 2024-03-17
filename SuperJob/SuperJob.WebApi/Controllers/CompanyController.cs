@@ -1,18 +1,29 @@
-﻿using System;
+﻿using SuperJob.Service.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace SuperJob.Controllers
 {
+    [RoutePrefix("api/company")]
     public class CompanyController : ApiController
     {
-        // GET api/values
-        public int Get()
+        private readonly ICompanyService _companyService;
+
+        public CompanyController(ICompanyService companyService)
         {
-            return 1;
+            _companyService = companyService;
+        }
+
+        // GET api/values
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetAllAsync()
+        {
+            return Request.CreateResponse(HttpStatusCode.NotFound, "Not implemented he he");
         }
 
         // GET api/values/5
