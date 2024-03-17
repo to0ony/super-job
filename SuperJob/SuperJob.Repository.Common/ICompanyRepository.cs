@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuperJob.Repository.Common
 {
-    public class Class1
+    public interface ICompanyRepository
     {
     }
 }

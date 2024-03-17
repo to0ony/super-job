@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SuperJob.Model.Common
+namespace SuperJob.Service.Common
 {
-    public class Class1
+    public interface ICompanyService
     {
     }
 }

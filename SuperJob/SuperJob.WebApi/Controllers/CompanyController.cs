@@ -7,12 +7,12 @@ using System.Web.Http;
 
 namespace SuperJob.Controllers
 {
-    public class ValuesController : ApiController
+    public class CompanyController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public int Get()
         {
-            return new string[] { "value1", "value2" };
+            return 1;
         }
 
         // GET api/values/5
