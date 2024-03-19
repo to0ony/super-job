@@ -23,7 +23,8 @@ namespace SuperJob.Controllers
         [HttpGet]
         public async Task<HttpResponseMessage> GetAllAsync()
         {
-            return Request.CreateResponse(HttpStatusCode.NotFound, "Not implemented he he");
+            var companies = await _companyService.GetAllAsync();
+            return Request.CreateResponse(HttpStatusCode.OK, companies);
         }
 
         // GET api/values/5

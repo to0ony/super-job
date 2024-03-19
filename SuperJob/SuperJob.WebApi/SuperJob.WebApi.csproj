@@ -340,6 +340,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SuperJob.Model\SuperJob.Model.csproj">
+      <Project>{ddefdd0f-3284-4041-9eae-623e0931cb2d}</Project>
+      <Name>SuperJob.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SuperJob.Repository\SuperJob.Repository.csproj">
       <Project>{8C0CF4BD-89CC-4871-9F50-EC1C93F98EA5}</Project>
       <Name>SuperJob.Repository</Name>

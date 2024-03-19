@@ -44,5 +44,11 @@
     <Compile Include="ICompanyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SuperJob.Model\SuperJob.Model.csproj">
+      <Project>{DDEFDD0F-3284-4041-9EAE-623E0931CB2D}</Project>
+      <Name>SuperJob.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

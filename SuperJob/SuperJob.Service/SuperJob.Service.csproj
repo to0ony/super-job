@@ -93,6 +93,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SuperJob.Model\SuperJob.Model.csproj">
+      <Project>{DDEFDD0F-3284-4041-9EAE-623E0931CB2D}</Project>
+      <Name>SuperJob.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SuperJob.Repository.Common\SuperJob.Repository.Common.csproj">
+      <Project>{1DB6DAEE-CC66-4597-95F6-5868B8F18225}</Project>
+      <Name>SuperJob.Repository.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SuperJob.Service.Common\SuperJob.Service.Common.csproj">
       <Project>{84A5BC70-B583-4CD5-AEA3-B401D7CFF6A3}</Project>
       <Name>SuperJob.Service.Common</Name>
