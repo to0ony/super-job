@@ -158,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DIConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -336,6 +338,24 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SuperJob.Model\SuperJob.Model.csproj">
+      <Project>{ddefdd0f-3284-4041-9eae-623e0931cb2d}</Project>
+      <Name>SuperJob.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SuperJob.Repository\SuperJob.Repository.csproj">
+      <Project>{8C0CF4BD-89CC-4871-9F50-EC1C93F98EA5}</Project>
+      <Name>SuperJob.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SuperJob.Service.Common\SuperJob.Service.Common.csproj">
+      <Project>{84A5BC70-B583-4CD5-AEA3-B401D7CFF6A3}</Project>
+      <Name>SuperJob.Service.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SuperJob.Service\SuperJob.Service.csproj">
+      <Project>{44068769-1960-490F-9EBA-9965D26FFD53}</Project>
+      <Name>SuperJob.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

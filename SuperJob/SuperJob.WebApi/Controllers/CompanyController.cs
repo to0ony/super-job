@@ -1,39 +1,103 @@
-﻿using System;
+﻿using SuperJob.Model;
+using SuperJob.Service.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace SuperJob.Controllers
 {
-    public class ValuesController : ApiController
+    [RoutePrefix("api/company")]
+    public class CompanyController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        private readonly ICompanyService _companyService;
+
+        public CompanyController(ICompanyService companyService)
         {
-            return new string[] { "value1", "value2" };
+            _companyService = companyService;
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        // GET api/values
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetAllAsync()
         {
-            return "value";
+            try
+            {
+                var companies = await _companyService.GetAllAsync();
+                return Request.CreateResponse(HttpStatusCode.OK, companies);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("{companyId}")]
+        public async Task<HttpResponseMessage> GetByIdAsync(Guid companyId)
+        {
+            try
+            {
+                var company = await _companyService.GetByIdAsync(companyId);
+                if (company == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, company);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         // POST api/values
-        public void Post([FromBody] string value)
+        [HttpPost]
+        public async Task<HttpResponseMessage> Post([FromBody] Company company)
         {
+            try
+            {
+                var createdCompany = await _companyService.CreateAsync(company);
+                return Request.CreateResponse(HttpStatusCode.Created, createdCompany);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
-
         // PUT api/values/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("{companyId}")]
+        public async Task<HttpResponseMessage> PutAsync(Guid companyId, [FromBody] Company updatedCompany)
         {
+            try
+            {
+                await _companyService.UpdateAsync(companyId, updatedCompany);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("{companyId}")]
+        public async Task<HttpResponseMessage> DeleteAsync(Guid companyId)
         {
+            try
+            {
+                await _companyService.DeleteAsync(companyId);
+                return Request.CreateResponse(HttpStatusCode.OK, "Successfully deleted!");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
     }
 }
