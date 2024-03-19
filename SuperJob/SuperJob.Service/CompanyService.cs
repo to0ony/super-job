@@ -22,5 +22,20 @@ namespace SuperJob.Service
         {
             return await _companyRepository.GetAllAsync();
         }
+
+        public async Task<Company> GetByIdAsync(Guid companyId)
+        {
+            return await _companyRepository.GetByIdAsync(companyId);
+        }
+
+        public async Task<bool> CreateAsync(Company company)
+        {
+            return await _companyRepository.CreateAsync(company);
+        }
+
+        public async Task<bool> UpdateAsync(Guid companyId, Company updatedCompany)
+        {
+            return await _companyRepository.UpdateAsync(companyId, updatedCompany);
+        }
     }
 }

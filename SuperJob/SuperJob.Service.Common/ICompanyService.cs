@@ -9,6 +9,9 @@ namespace SuperJob.Service.Common
 {
     public interface ICompanyService
     {
+        Task<bool> CreateAsync(Company company);
         Task<IEnumerable<Company>> GetAllAsync();
+        Task<Company> GetByIdAsync(Guid companyId);
+        Task<bool> UpdateAsync(Guid companyId, Company updatedCompany);
     }
 }
