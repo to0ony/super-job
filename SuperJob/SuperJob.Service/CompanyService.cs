@@ -37,5 +37,10 @@ namespace SuperJob.Service
         {
             return await _companyRepository.UpdateAsync(companyId, updatedCompany);
         }
+
+        public async Task<bool> DeleteAsync(Guid companyId)
+        {
+            return await _companyRepository.DeleteAsync(companyId);
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace SuperJob.Repository
             {
                 await connection.OpenAsync();
 
-                string query = "SELECT * FROM company";
+                string query = "SELECT * FROM company WHERE isactive = true";
 
                 using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
                 {
@@ -61,7 +61,7 @@ namespace SuperJob.Repository
             {
                 await connection.OpenAsync();
 
-                string query = "SELECT * FROM company WHERE companyid = @companyId";
+                string query = "SELECT * FROM company WHERE companyid = @companyId AND isactive = true";
                 //chech if there is a company with the given id, if there is such company, get it and return it
                 using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
                 {
@@ -86,7 +86,14 @@ namespace SuperJob.Repository
                         }
                     }
                 }
-                return company;
+                if(company.CompanyId == Guid.Empty)
+                {
+                    return null;
+                }
+                else
+                {
+                    return company;
+                }
             }
         }
 
@@ -178,6 +185,23 @@ namespace SuperJob.Repository
 
                     int result = await command.ExecuteNonQueryAsync();
 
+                    return result > 0;
+                }
+            }
+        }
+
+        public async Task<bool> DeleteAsync(Guid companyId)
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+
+                string query = "UPDATE company SET isactive = false WHERE companyid = @CompanyId";
+
+                using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@CompanyId", companyId);
+                    int result = await command.ExecuteNonQueryAsync();
                     return result > 0;
                 }
             }

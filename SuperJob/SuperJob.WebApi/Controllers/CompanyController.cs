@@ -42,6 +42,10 @@ namespace SuperJob.Controllers
             try
             {
                 var company = await _companyService.GetByIdAsync(companyId);
+                if (company == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
                 return Request.CreateResponse(HttpStatusCode.OK, company);
             }
             catch (Exception ex)
@@ -81,8 +85,19 @@ namespace SuperJob.Controllers
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("{companyId}")]
+        public async Task<HttpResponseMessage> DeleteAsync(Guid companyId)
         {
+            try
+            {
+                await _companyService.DeleteAsync(companyId);
+                return Request.CreateResponse(HttpStatusCode.OK, "Successfully deleted!");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
     }
 }
